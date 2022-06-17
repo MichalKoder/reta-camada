@@ -34,9 +34,27 @@ class DashboardController extends Controller
             $this->cModel->delete($this->getVar()['id']);
             }
 
-            
+
         $data['candidates'] = $this->cModel->db()->selectAll(); 
         return $this->renderView('dashboard/index', $data);
+    }
+
+    
+    public function addEditCandidate() {
+        $data = [];
+        // SAVE CANDIDATE BUTTON CLICK EVENT
+        if(array_key_exists('save_candidate', $this->getVar())) {
+            $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+            $set = $this->getVar();
+            unset($set['id']);
+            unset($set['save_candidate']);
+            $this->cModel->save($set, $id);
+
+            // redirect to target URL containing EDIT FORM
+            header('Location: '.BASEURL.'/dashboard'); 
+            exit;
+            }
+        return $this->renderView('dashboard/add_edit_candidate', $data);
     }
 
    

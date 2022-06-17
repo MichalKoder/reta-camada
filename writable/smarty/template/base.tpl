@@ -18,33 +18,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <a class="navbar-brand" href="{$BASEURL}/">CaMaDa</a>
-                        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{$BASEURL}/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dashboard
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{$BASEURL}/dashboard">Show Candidates</a></li>
-          </ul>
-        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{$BASEURL}/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dashboard
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{$BASEURL}/dashboard">Show Candidates</a></li>
+                                    <li><a class="dropdown-item" href="{$BASEURL}/dashboard/add_edit_candidate">Add or Edit Candidate</a></li>
+                                </ul>
+                        </li>
 
                     </ul>
-                </div>
+                 </div>
             </div>
         </nav>
+
         <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    {block name="content"}Default content{/block}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {block name="content"}Default content{/block}
+                    </div>
                 </div>
             </div>
+        </main>
+
+        <footer class="px-2 py-2">
+        <div>
+            <p class="text-center">&copy; 2022 Michał Sapiński</p>
         </div>
-                </main>
-                <footer class="px-2 py-2">
-                <div>
-                    <p class="text-center">&copy; 2022 Michał Sapiński</p>
-                </div>
-                </footer>
+        </footer>
 
         <script src="{$BASEURL}/assets/js/bootstrap.min.js"></script>
     </body>
