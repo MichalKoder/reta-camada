@@ -1,0 +1,1 @@
+### Actual templates folder is placed in writable/smarty/template ###

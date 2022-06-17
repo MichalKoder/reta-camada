@@ -1,0 +1,28 @@
+#--------------------------------------------------------------------
+# Environment Configuration file
+#
+# This is sample configuration file
+# Please edit it according to your needs
+#--------------------------------------------------------------------
+
+
+# ONCE FINISHED EDITING, RENAME THIS FILE FOR .env SO IT COULD WORK
+
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
+
+# Your hostname
+app.baseURL = 'http://example.com';
+
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+#Edit db credentials
+
+database.hostname = localhost
+database.database = dbname
+database.username = username
+database.password = password
+database.DBDriver = MySQLi

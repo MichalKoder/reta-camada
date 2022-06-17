@@ -1,0 +1,13 @@
+{
+    "name": "michalkoder/reta-camada",
+    "autoload": {
+        "psr-4": {
+            "Michalkoder\\RetaCamada\\": "app/"
+        }
+    },
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "smarty/smarty": "^4.1",
+        "fpdo/fluentpdo": "^2.2"
+    }
+}
