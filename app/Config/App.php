@@ -72,9 +72,9 @@ class App
             $controller->$method();
             break;
     }
-    
+
         // every session data made available for single request only
-        session_destroy();
+         if(session_id()) session_destroy();
     }
 }
 

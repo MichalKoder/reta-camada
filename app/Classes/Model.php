@@ -3,10 +3,10 @@
 namespace Michalkoder\RetaCamada\Classes;
 use Michalkoder\RetaCamada\Classes\Database;
 
-class Model {
+class Model 
+{
 
     private $allowedFields = [];
-    private $entity;
     private $db;
 
     public function __construct($entity = null) {
