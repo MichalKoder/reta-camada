@@ -25,6 +25,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{$BASEURL}/dashboard">Show Candidates</a></li>
                                     <li><a class="dropdown-item" href="{$BASEURL}/dashboard/add_edit_candidate">Add or Edit Candidate</a></li>
+                                    <li><a class="dropdown-item" href="{$BASEURL}/dashboard/roles">Manage Roles</a></li>
                                 </ul>
                         </li>
 

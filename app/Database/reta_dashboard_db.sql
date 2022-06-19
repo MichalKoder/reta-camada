@@ -18,4 +18,3 @@ CREATE TABLE Candidate (
     PRIMARY KEY(ID),
     FOREIGN KEY(roleID) REFERENCES Role(ID) 
 );
-

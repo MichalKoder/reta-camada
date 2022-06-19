@@ -34,6 +34,10 @@ class App
         $r->addRoute('POST', '/dashboard', 'DashboardController::index');
         $r->addRoute('GET', '/dashboard/add_edit_candidate', 'DashboardController::addEditCandidate');
         $r->addRoute('POST', '/dashboard/add_edit_candidate', 'DashboardController::addEditCandidate');
+        $r->addRoute('GET', '/dashboard/roles', 'DashboardController::roles');
+        $r->addRoute('POST', '/dashboard/roles', 'DashboardController::roles');
+        $r->addRoute('GET', '/dashboard/add_edit_role', 'DashboardController::addEditRole');
+        $r->addRoute('POST', '/dashboard/add_edit_role', 'DashboardController::addEditRole');
 
     });
 
@@ -74,8 +78,9 @@ class App
     }
 
         // every session data made available for single request only
-         if(session_id()) session_destroy();
+         if(session_id()) {
+            session_destroy();
+         }
     }
+
 }
-
-

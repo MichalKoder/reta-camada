@@ -4,27 +4,31 @@ namespace Michalkoder\RetaCamada\Classes;
 
 class Controller
 {
-    public function renderView($path, $data = null) {
+    private $smarty;
+
+    public function __construct() {
         $variables = '';
-        $smarty = new \Smarty();
-        $smarty->setTemplateDir(WRITEPATH.'smarty/template');
-        $smarty->setConfigDir(WRITEPATH.'smarty/config');
-        $smarty->setCompileDir(WRITEPATH.'smarty/compile');
-        $smarty->setCacheDir(WRITEPATH.'smarty/cache');
-        // $smarty->testInstall();
-        
+        $this->smarty = new \Smarty();
+        $this->smarty->setTemplateDir(WRITEPATH.'smarty/template');
+        $this->smarty->setConfigDir(WRITEPATH.'smarty/config');
+        $this->smarty->setCompileDir(WRITEPATH.'smarty/compile');
+        $this->smarty->setCacheDir(WRITEPATH.'smarty/cache');
+        // $this->smarty->testInstall();
+    }
+
+    public function renderView($path, $data = null) {
 
         if(is_array($data)) {
             foreach($data as $key=>$val) {
-                $smarty->assign($key, $val);
+                $this->smarty->assign($key, $val);
             }
         } elseif (isset($data)) {
         throw new TypeException;
         }
             $view = VIEWSPATH.$path.'.tpl';
-            $smarty->assign('BASEURL', BASEURL);
+            $this->smarty->assign('BASEURL', BASEURL);
             
-            return  $smarty->display($view);
+            return  $this->smarty->display($view);
         }
 
         public function getVar() {

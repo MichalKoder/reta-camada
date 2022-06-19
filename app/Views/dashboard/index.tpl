@@ -1,7 +1,7 @@
 {extends file="base.tpl"}
 {block name="content"}
 <h4>Manage Candidates List</h4>
-<form method="POST" action="dashboard/add_edit_candidate">
+<form method="POST" action="">
 <input class="btn btn-primary" type="submit" value="New Candidate" name="new_candidate">
 </form>
 {if empty($candidates)}

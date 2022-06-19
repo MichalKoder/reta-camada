@@ -45,35 +45,68 @@ class Database
         $this->table = $tablename;
     }
 
+    public function getTable() {
+        return $this->table;
+    }
+
 
     public function select_by_key($keyname,$keyvalue) {
+    try {
     $query = $this->db->from($this->table)
              ->where("$keyname = ", $keyvalue);
-    return $query;
+    } catch (\PDOException $e) {
+    $error = [$e->getMessage(), $e->getCode()];
+    }
+
+    $result = isset($query) ? (is_array($query) ? $query : []) : $error;
+    return $result;
     }
 
     public function selectAll() {
+        try {
         if (!isset($this->table)) die('Table is not set');
         $query = $this->db->from($this->table);
-        return $query;
+        } catch (\PDOException $e) {
+        $error = [$e->getMessage(), $e->getCode()];
+        }
+        $result = (isset($error) ? $error : $query);
+        return $result;
         }
 
     public function insert($data) {
+        try {
         if (!isset($this->table)) die('Table is not set');
         $query = $this->db->insertInto($this->table, $data)->execute();
-        return $query;
+        } catch (\PDOException $e) {
+        $error = [$e->getMessage(), $e->getCode()];
+        }
+        $result = isset($query) ? (is_array($query) ? $query : []) : $error;
+        return $result;
+
     }
 
     public function update($data, $id) {
+        try {
         if (!isset($this->table)) die('Table is not set');
-        $query = $this->db->update($this->table, $data, $id)->execute(); 
-        return $query;
+        $query = $this->db->update($this->table, $data, $id)->execute();
+        } catch (\PDOException $e) {
+        $error = [$e->getMessage(), $e->getCode()];
+        }
+        $result = isset($query) ? (is_array($query) ? $query : []) : $error;
+        return $result;
+
     }
 
     public function delete($id) {
+        try {
         if (!isset($this->table)) die('Table is not set');
         $query = $this->db->deleteFrom($this->table)->where('id', $id)->execute();
-        return $query;
+        } catch (\PDOException $e) {
+        $error = [$e->getMessage(), $e->getCode()];
+        }
+        $result = isset($query) ? $query : $error;
+        return $result;
+
     }
 
 }

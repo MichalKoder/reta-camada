@@ -19,40 +19,80 @@ class Model
         $tablename = substr($classname, 0, strpos($classname, 'Model'));
         if($tablename) $this->db->table($tablename);
     }
+
+    // auto switch to actual Model's table before invoking any crud method
+    public function __call($method,$args) 
+    {
+      // if method exists
+      if(method_exists($this, $method)) 
+      {
+         // if in list of methods where you wanna call
+         if(in_array($method, array('save','delete','fetchAll', 'fetch')))
+         {
+             // call
+             $classname = get_class($this); // get child full classname
+             if (preg_match('@\\\\([\w]+)$@', $classname, $matches)) {
+                 $classname = $matches[1];  // obtain child class' name without namespace
+             }
+             $tablename = substr($classname, 0, strpos($classname, 'Model'));
+             $this->db->table($tablename);
+         }
+
+         return call_user_func_array(array($this,$method),$args);
+       }
+     }
     /*
      ****************************************************
      *  CRUD
      ****************************************************
     */
     // upsert (insert or update)
-     public function save($data, $id = null) {
+     private function save($data, $id = null) {
+   
         if(is_array($data)) {
-            if(isset($id)) {
-                $this->db->update($data, $id);
+            if(!empty($id)) {
+                $result = $this->db->update($data, $id);
             } else {
-              $this->db->insert($data);
+              $result = $this->db->insert($data);
             }
         }
-     }
+
+        return $result;
+        }
+     
 
      // delete
-     public function delete($id) {
-        return $this->db->delete($id);
+     private function delete($id) {
+        $result = $this->db->delete($id);
+        return $result;
      }
 
      // fetch All
-     public function fetchAll() {
-         return $this->db->selectAll();
+     private function fetchAll() {
+        return $this->db->selectAll();
+        return $result;
      }
+     
 
      // fetch single
-     public function fetch($id) {
-         return $this->db->select($id);
+     private function fetch($id) {
+
+        $result = $this->db->select($id);
+        return $result;
      }
+     
      
      // db queryBuilder getter
      public function db() {
          return $this->db;
+     }
+
+     public function getTable() {
+        return $this->db->getTable();
+     }
+
+     public function table($tablename) {
+        $this->db->table($tablename);
      }
 
 
